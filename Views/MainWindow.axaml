@@ -1,0 +1,52 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:BindingProgressBarError.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="BindingProgressBarError.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="BindingProgressBarError">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <!-- error -->
+        <Grid Grid.Column="0" Margin="50 50" >
+            <TextBlock Foreground="Green" TextWrapping="Wrap" Text="Behavior keep OK" />
+            <Slider Name="slider1" Orientation="Vertical" Margin="5 10" Height="300" Value="0" />
+            <ProgressBar ShowProgressText="True" Orientation="Vertical" Width="80">
+                <ProgressBar.Value >
+                    <Binding Path="#slider1.Value" />
+                </ProgressBar.Value>
+            </ProgressBar>
+        </Grid>
+        <!-- error incremet BorderThickness="3" -->
+        <Grid Grid.Column="1" Margin="50 50" >
+            <TextBlock Foreground="Red" TextWrapping="Wrap" Text=" Error! Unexpected behavior when adding the BorderThickness property" />
+            <Slider Name="slider2" Orientation="Vertical" Margin="5 10" Height="300" Value="0" />
+            <ProgressBar ShowProgressText="True" BorderThickness="3" Orientation="Vertical" Width="80">
+                <ProgressBar.Value >
+                    <Binding Path="#slider2.Value" />
+                </ProgressBar.Value>
+            </ProgressBar>
+        </Grid>
+        <!-- error incremet BorderThickness="3" -->
+        <Grid Grid.Column="2" Margin="50 50" >
+            <TextBlock Foreground="Red" TextWrapping="Wrap" Text=" With the Height property set it still passes a little out" />
+            <Slider Name="slider3" Orientation="Vertical" Margin="5 10" Height="300" Value="0" />
+            <ProgressBar ShowProgressText="True" BorderThickness="3" Orientation="Vertical" Width="80" Height="100">
+                <ProgressBar.Value >
+                    <Binding Path="#slider3.Value" />
+                </ProgressBar.Value>
+            </ProgressBar>
+        </Grid>
+    </Grid>
+</Window>
